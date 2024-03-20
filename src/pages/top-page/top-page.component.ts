@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {TopPageTemplateComponent} from 'torqual-ui'
+import {TopPageTemplateComponent, TopPageTemplateInput} from 'torqual-ui'
 import {Router, RouterOutlet} from "@angular/router";
 import {SidenavItem} from "torqual-ui/models/sidenav";
 
@@ -8,19 +8,24 @@ import {SidenavItem} from "torqual-ui/models/sidenav";
   selector: 'app-top-page',
   standalone: true,
   imports: [CommonModule, TopPageTemplateComponent, RouterOutlet],
-  templateUrl: './top-page.component.html',
-  styleUrls: ['./top-page.component.scss']
+  template: `
+    <lib-top-page-template [input]="input" (leftNavItemClick)="onLeftNavItemClick($event)">
+      <router-outlet center></router-outlet>
+    </lib-top-page-template>
+  `,
 })
 export class TopPageComponent {
-  leftNavItems = [
-    {id: 'action', icon: 'home',},
-    {id: 'product', icon: 'view_timeline',}
-  ]
+  input: TopPageTemplateInput = {
+    leftNavItems: [
+      {id: 'action', icon: 'home',},
+      {id: 'product', icon: 'view_timeline',}
+    ],
+    rightNavItems: [
+      {id: 'r-1', icon: 'settings',},
+      {id: 'r-2', icon: 'star',}
+    ]
+  }
 
-  rightNavItems = [
-    {id: 'r-1', icon: 'settings',},
-    {id: 'r-2', icon: 'star',}
-  ]
 
   readonly _router = inject(Router)
 

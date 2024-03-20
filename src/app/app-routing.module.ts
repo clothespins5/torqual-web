@@ -16,7 +16,7 @@ const routes: Routes = [
         component: ActionManagementPageComponent,
         children: [
           {
-            path: ':id',
+            path: 'detail',
             component: ActionResourcePageComponent
           }
         ]
@@ -26,7 +26,7 @@ const routes: Routes = [
         component: ProductManagementPageComponent,
         children: [
           {
-            path: ':id',
+            path: 'detail',
             component: ProductResourcePageComponent
           }
         ]
